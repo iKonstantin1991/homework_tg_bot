@@ -45,7 +45,7 @@ def parse_homework_status(homework):
     return f'У вас проверили работу "{homework_name}"!\n\n{verdict}'
 
 
-def get_homework_statuses(current_timestamp, bot_client):
+def get_homework_statuses(current_timestamp):
     try:
         homework_statuses = requests.get(
             'https://praktikum.yandex.ru/api/user_api/homework_statuses/',
@@ -53,19 +53,11 @@ def get_homework_statuses(current_timestamp, bot_client):
             headers={'Authorization': f'OAuth {PRAKTIKUM_TOKEN}'},
         )
         return homework_statuses.json()
-    except Exception as error:
+    except Exception:
         logging.exception()
-        send_message(
-            f'Бот столкнулся с ошибкой: {error}',
-            bot_client,
-        )
         return {}
-    except ValueError as error:
+    except ValueError:
         logging.exception()
-        send_message(
-            f'Бот столкнулся с ошибкой: {error}',
-            bot_client,
-        )
         return {}
 
 
