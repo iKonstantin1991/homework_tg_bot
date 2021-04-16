@@ -67,12 +67,11 @@ def send_message(message, bot_client):
 
 def main():
     bot = telegram.Bot(token=TELEGRAM_TOKEN)
-    current_timestamp = 0  # int(time.time())
-    i = 0
-    while i < 2:
+    current_timestamp = int(time.time())
+    while True:
         logging.debug('Программа запущена')
         try:
-            new_homework = get_homework_statuses(current_timestamp, bot)
+            new_homework = get_homework_statuses(current_timestamp)
             if new_homework.get('homeworks'):
                 send_message(
                     parse_homework_status(new_homework.get('homeworks')[0]),
@@ -83,8 +82,7 @@ def main():
                 current_timestamp = new_homework.get("current_date")
             else:
                 current_timestamp = int(time.time())
-            # time.sleep(900)
-            time.sleep(1)
+            time.sleep(900)
 
         except Exception as error:
             logging.exception()
@@ -93,7 +91,6 @@ def main():
                 bot,
             )
             time.sleep(5)
-        i += 1
 
 
 if __name__ == '__main__':
