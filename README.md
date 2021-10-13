@@ -1,2 +1,8 @@
-# api_sp1_bot
-api sp1 bot
+# Телеграм бот
+## Описание
+Телеграмм бот используемый для оповещений о состоянии проверки домашних работ, а так же завершения gitworkflow
+## Стек
+Python 3.8
+## Контакты
+Email: ikonstantin1991@mail.ru<br>
+Telegram: @ikonstantin91
